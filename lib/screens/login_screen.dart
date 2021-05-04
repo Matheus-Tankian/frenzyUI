@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:frenzy_ui/screens/home_screen.dart';
+import 'package:frenzy_ui/widgets/curve_clipper.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -13,35 +15,34 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Container(
           height: MediaQuery.of(context).size.height,
           child: Column(
-            children: [
-              //imagem de fundo
-              Image(
-                height: MediaQuery.of(context).size.height / 2.5,
+            children: <Widget>[
+              ClipPath(
+                clipper: CurveClipper(),
+                child: Image(
+                  height: MediaQuery.of(context).size.height / 2.5,
                   width: double.infinity,
                   image: AssetImage('assets/images/login_background.jpg'),
-                fit: BoxFit.cover,
+                  fit: BoxFit.cover,
+                ),
               ),
               Text(
-                //titulo da tela de login do app
                 'FRENZY',
                 style: TextStyle(
                   color: Theme.of(context).primaryColor,
                   fontSize: 34.0,
                   fontWeight: FontWeight.bold,
-                  letterSpacing: 1.0,
+                  letterSpacing: 10.0,
                 ),
               ),
-              //espaco entre o tituto do app e a textField
               SizedBox(height: 10.0),
-              //textFild UserName
               Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-                  child: TextField(
-                    decoration: InputDecoration(
+                padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+                child: TextField(
+                  decoration: InputDecoration(
                     contentPadding: EdgeInsets.symmetric(vertical: 15.0),
                     fillColor: Colors.white,
                     filled: true,
-                    hintText: 'UserName',
+                    hintText: 'Username',
                     prefixIcon: Icon(
                       Icons.account_box,
                       size: 30.0,
@@ -49,9 +50,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
               ),
-              //espaco entre a as textfields userName e Password
               SizedBox(height: 10.0),
-              //password textfield
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
                 child: TextField(
@@ -68,11 +67,14 @@ class _LoginScreenState extends State<LoginScreen> {
                   obscureText: true,
                 ),
               ),
-              //espaco entre o botao de login e o password textfield
               SizedBox(height: 40.0),
-              //botao de login
               GestureDetector(
-                onTap: () {},
+                onTap: () => Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => HomeScreen(),
+                  ),
+                ),
                 child: Container(
                   margin: EdgeInsets.symmetric(horizontal: 60.0),
                   alignment: Alignment.center,
@@ -92,13 +94,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
               ),
-
-            Expanded(
+              Expanded(
                 child: Align(
                   alignment: FractionalOffset.bottomCenter,
                   child: GestureDetector(
                     onTap: () {},
-                    child:  Container(
+                    child: Container(
                       alignment: Alignment.center,
                       color: Theme.of(context).primaryColor,
                       height: 80.0,
@@ -113,8 +114,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                 ),
-            ),
-
+              ),
             ],
           ),
         ),
